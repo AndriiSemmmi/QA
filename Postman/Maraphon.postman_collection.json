@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "db39f445-218d-460b-b553-c4b07feb3cbe",
+		"name": "Maraphon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25933586"
+	},
+	"item": [
+		{
+			"name": "Positive",
+			"item": [
+				{
+					"name": "Get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Andrii\",\r\n    \"lastName\": \"Semerei\",\r\n    \"email\": \"asmith@thinkingtester.com\",\r\n    \"location\": {\r\n        \"city\": \"Kyiv\",\r\n        \"country\": \"Ukraine\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"Software Tester\",\r\n    \t\"company\": \"Looking for a job\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}",
+							"host": [
+								"{{url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get created user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Robert\",\r\n    \"lastName\": \"Hill\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User deleated\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Robert\",\r\n    \"lastName\": \"Hill\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative test",
+			"item": [
+				{
+					"name": "Update user (invalid Name)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid first name \", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"123124\",\r\n    \"lastName\": \"Hill\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user (invalid SecondName)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid Second Name\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Andrii\",\r\n    \"lastName\": \"#@$12\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user (invalid Email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid Email\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Andrii\",\r\n    \"lastName\": \"Semerei\",\r\n    \"email\": \"\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user (invalid location)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid Location\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Andrii\",\r\n    \"lastName\": \"Semerei\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"\",\r\n        \"country\": \"252sfsahbdagusbdnajisvdanisgudashnjabfud3\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"QA Lead\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user (invalid employee)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid employee\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Andrii\",\r\n    \"lastName\": \"#@$12\",\r\n    \"email\": \"rhill@fake.com\",\r\n    \"location\": {\r\n        \"city\": \"London\",\r\n        \"country\": \"UK\"\r\n    },\r\n    \"employer\": {\r\n    \t\"jobTitle\": \"\",\r\n    \t\"company\": \"Apple\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{CreatedUserId}}",
+							"host": [
+								"{{url}}{{CreatedUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "CreatedUserId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
